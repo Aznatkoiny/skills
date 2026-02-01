@@ -2,7 +2,13 @@
 
 A Claude Code plugin providing comprehensive Deep Learning guidance with Keras 3 (Multi-Backend: JAX, TensorFlow, PyTorch).
 
-## Installation
+## General Installation via Vercel
+
+```bash
+npx skills add Aznatkoiny/skills
+```
+
+## Installation via Claude Code
 
 ```bash
 # Add the marketplace
@@ -13,6 +19,8 @@ A Claude Code plugin providing comprehensive Deep Learning guidance with Keras 3
 ```
 
 Then restart Claude Code.
+
+
 
 ## Skills Included
 
