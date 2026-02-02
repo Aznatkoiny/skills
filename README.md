@@ -46,6 +46,14 @@ Comprehensive guide for Deep Learning with Keras 3. Use when:
 - `quick_train.py` - Reusable training template
 - `visualize_filters.py` - Convnet filter visualization
 
+## Projects
+
+Example applications built using the deep-learning skill:
+
+| Project | Description |
+|---------|-------------|
+| [stock_predictor](projects/stock_predictor/) | LSTM-based stock price forecasting with technical indicators |
+
 ## Local Development
 
 To test locally:

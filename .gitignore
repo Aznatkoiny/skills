@@ -6,10 +6,15 @@
 !.claude-plugin/**
 !skills/
 !skills/**
-!stock_predictor/
-!stock_predictor/**
-!tests/
-!tests/**
+!projects/
+!projects/**
+
+# But ignore build artifacts within projects
+__pycache__/
+*.pyc
+*.keras
+output/
+
 !README.md
 !LICENSE
 
