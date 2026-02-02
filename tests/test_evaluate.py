@@ -30,3 +30,40 @@ class TestNaiveBaseline:
         y_true = np.array([100.0, 100.0, 100.0, 100.0])
         mae = naive_baseline(y_true)
         assert mae == 0.0
+
+
+class TestEvaluateModel:
+    """Tests for evaluate_model function."""
+
+    @pytest.fixture
+    def trained_model(self):
+        """Create a simple trained model for testing."""
+        from stock_predictor.model import create_model
+        import keras
+        model = create_model(lookback=60, n_features=10)
+        model.compile(optimizer="adam", loss="mse", metrics=["mae"])
+        return model
+
+    @pytest.fixture
+    def dummy_test_data(self):
+        """Create dummy test data."""
+        np.random.seed(42)
+        return {
+            "X_test": np.random.rand(50, 60, 10).astype(np.float32),
+            "y_test": np.random.rand(50).astype(np.float32),
+        }
+
+    def test_returns_dict(self, trained_model, dummy_test_data):
+        """Should return dict with metrics."""
+        from stock_predictor.evaluate import evaluate_model
+        result = evaluate_model(trained_model, dummy_test_data)
+        assert isinstance(result, dict)
+        assert "mse" in result
+        assert "mae" in result
+
+    def test_predictions_returned(self, trained_model, dummy_test_data):
+        """Should include predictions in result."""
+        from stock_predictor.evaluate import evaluate_model
+        result = evaluate_model(trained_model, dummy_test_data)
+        assert "predictions" in result
+        assert len(result["predictions"]) == len(dummy_test_data["y_test"])
