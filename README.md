@@ -1,6 +1,6 @@
 # Skills Plugin
 
-A Claude Code plugin providing comprehensive guidance for Deep Learning and Web3 Payments.
+A Claude Code plugin providing skills for Deep Learning, Reinforcement Learning, Prompt Engineering, and Web3 Payments.
 
 ## General Installation via Vercel
 
@@ -43,6 +43,50 @@ Comprehensive guide for Deep Learning with Keras 3 (Multi-Backend: JAX, TensorFl
 **Utility Scripts:**
 - `quick_train.py` - Reusable training template
 - `visualize_filters.py` - Convnet filter visualization
+
+### reinforcement-learning
+
+Reinforcement Learning best practices for Python using modern libraries (Stable-Baselines3, RLlib, Gymnasium). Use when:
+- Implementing RL algorithms (PPO, SAC, DQN, TD3, A2C)
+- Creating custom Gymnasium environments
+- Training, debugging, or evaluating RL agents
+- Setting up hyperparameter tuning for RL
+- Deploying RL models to production
+
+**Reference Materials:**
+- Algorithm implementations (PPO, SAC, DQN, TD3, A2C)
+- Custom environment creation
+- Training and debugging patterns
+- Evaluation and benchmarking
+- Production deployment
+
+### cpp-reinforcement-learning
+
+C++ Reinforcement Learning using libtorch (PyTorch C++ frontend) and modern C++17/20. Use when:
+- Implementing RL algorithms in C++ for performance-critical applications
+- Building production RL systems with libtorch
+- Creating replay buffers and experience storage
+- Optimizing RL training with GPU acceleration
+- Deploying RL models with ONNX Runtime
+
+**Reference Materials:**
+- Algorithm implementations with libtorch
+- Memory management patterns
+- Performance optimization
+- Testing strategies
+
+### prompt-optimizer
+
+Optimize prompts for Claude 4.x models using Anthropic's official best practices. Use when:
+- Improving or creating effective prompts for Claude
+- Fixing underperforming prompts or reducing verbosity
+- Creating system prompts or controlling output formatting
+- Enhancing agentic and tool-use behaviors
+
+**Reference Materials:**
+- Prompt patterns and techniques
+- Agentic prompt design
+- Output formatting controls
 
 ### x402-payments
 
