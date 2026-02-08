@@ -1,14 +1,14 @@
 {
-  "name": "deep-learning-skills-dev",
-  "description": "Development marketplace for deep-learning-skills plugin",
+  "name": "skills-dev",
+  "description": "Development marketplace for skills plugin",
   "owner": {
     "name": "Antony Zaki"
   },
   "plugins": [
     {
-      "name": "deep-learning-skills",
-      "description": "Comprehensive Deep Learning skill for Keras 3 with reference materials and utility scripts",
-      "version": "1.0.0",
+      "name": "skills",
+      "description": "Deep Learning, Reinforcement Learning, Prompt Optimization, and x402 Web3 Payments skills",
+      "version": "2.0.0",
       "source": "./",
       "author": {
         "name": "Antony Zaki"

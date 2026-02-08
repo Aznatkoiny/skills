@@ -1,12 +1,12 @@
 {
-  "name": "deep-learning-skills",
-  "version": "1.0.0",
-  "description": "Comprehensive Deep Learning skill for Keras 3 (Multi-Backend: JAX, TensorFlow, PyTorch). Covers neural networks, CNNs, RNNs, Transformers, time series, and generative models.",
+  "name": "skills",
+  "version": "2.0.0",
+  "description": "Skills for Deep Learning (Keras 3), Reinforcement Learning (Python & C++), Prompt Optimization (Claude 4.x), and x402 Web3 Payments.",
   "author": {
     "name": "Antony Zaki"
   },
   "homepage": "https://github.com/Aznatkoiny/skills",
   "repository": "https://github.com/Aznatkoiny/skills",
   "license": "MIT",
-  "keywords": ["deep-learning", "keras", "tensorflow", "pytorch", "jax", "neural-networks", "machine-learning"]
+  "keywords": ["deep-learning", "reinforcement-learning", "prompt-engineering", "x402", "keras", "pytorch", "gymnasium", "web3", "machine-learning"]
 }
