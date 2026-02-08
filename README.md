@@ -1,21 +1,21 @@
-# Skills Plugin
+# zAI-Skills
 
 A Claude Code plugin providing skills for Deep Learning, Reinforcement Learning, Prompt Engineering, and Web3 Payments.
 
 ## General Installation via Vercel
 
 ```bash
-npx skills add Aznatkoiny/skills
+npx skills add Aznatkoiny/zAI-Skills
 ```
 
 ## Installation via Claude Code
 
 ```bash
 # Add the marketplace
-/plugin marketplace add Aznatkoiny/skills
+/plugin marketplace add Aznatkoiny/zAI-Skills
 
 # Install the plugin
-/plugin install deep-learning-skills@skills
+/plugin install ai-skills@zAI-Skills
 ```
 
 Then restart Claude Code.
@@ -122,7 +122,7 @@ To test locally:
 /plugin marketplace add /path/to/this/repo
 
 # Install from local
-/plugin install deep-learning-skills@deep-learning-skills-dev
+/plugin install ai-skills@zAI-Skills
 ```
 
 ## License

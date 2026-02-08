@@ -4,10 +4,12 @@
 # Except the plugin structure
 !.claude-plugin/
 !.claude-plugin/**
-!skills/
-!skills/**
+!ai-skills/
+!ai-skills/**
 !projects/
 !projects/**
+!docs/
+!docs/**
 
 # But ignore build artifacts within projects
 __pycache__/
