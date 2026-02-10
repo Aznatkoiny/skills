@@ -87,9 +87,43 @@ Consultant (You)
                                └── Due Diligence (sonnet)
 ```
 
-## Future: Financial Intelligence MCP Server
+## Financial Intelligence MCP Server
 
-A custom MCP server wrapping public financial data APIs (SEC EDGAR, FRED, stock data) is planned for a future phase to give agents direct access to company financials, economic indicators, and industry benchmarks.
+A custom MCP server that gives agents direct access to financial data from SEC EDGAR, FRED (Federal Reserve), and Yahoo Finance.
+
+### Tools (7)
+
+| Tool | Source | Description |
+|------|--------|-------------|
+| `fin_get_company_financials` | SEC EDGAR XBRL | Revenue, EBITDA, margins, growth rates for public companies |
+| `fin_get_filing_text` | SEC EDGAR | Full text from 10-K, 10-Q, 8-K filings |
+| `fin_get_stock_data` | Yahoo Finance | Price history, market cap, P/E, key statistics |
+| `fin_get_macro_indicators` | FRED | GDP, CPI, interest rates, unemployment, and thousands more |
+| `fin_get_earnings_transcript` | SEC EDGAR 8-K | Earnings-related 8-K filings (Item 2.02 proxy) |
+| `fin_compare_companies` | SEC EDGAR | Side-by-side comparison of 2-5 companies |
+| `fin_get_industry_benchmarks` | SEC EDGAR | Median/mean/quartile metrics by SIC code |
+
+### Environment Variables
+
+| Variable | Required | Description |
+|----------|----------|-------------|
+| `FRED_API_KEY` | For FRED tools | Free key from https://fred.stlouisfed.org/docs/api/api_key.html |
+| `EDGAR_USER_AGENT` | Recommended | SEC requires email in User-Agent (e.g., "YourName your@email.com") |
+
+### Architecture
+
+```
+consulting-toolkit/
+├── .mcp.json                          ← MCP server configuration
+├── mcp-servers/
+│   └── financial-intelligence/
+│       ├── src/
+│       │   ├── index.ts               ← Entry point, 7 tool registrations
+│       │   ├── services/              ← API clients (EDGAR, FRED, Yahoo)
+│       │   ├── tools/                 ← Tool handler implementations
+│       │   └── schemas/               ← Zod input validation
+│       └── dist/                      ← Built output
+```
 
 ## License
 

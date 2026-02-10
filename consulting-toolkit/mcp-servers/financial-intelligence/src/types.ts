@@ -1,0 +1,156 @@
+// ── SEC EDGAR Types ──
+
+export interface EdgarCompanyInfo {
+  cik: string;
+  ticker: string;
+  name: string;
+  sic: string;
+  sicDescription: string;
+  exchanges: string[];
+}
+
+export interface EdgarXBRLFact {
+  end: string;        // Period end date (YYYY-MM-DD)
+  val: number;
+  accn: string;       // Accession number
+  fy: number;         // Fiscal year
+  fp: string;         // Fiscal period (FY, Q1, Q2, Q3, Q4)
+  form: string;       // Filing form (10-K, 10-Q)
+  filed: string;      // Date filed
+  frame?: string;     // Reporting frame (e.g., CY2023Q1)
+}
+
+export interface FinancialMetric {
+  metric: string;
+  periods: FinancialPeriod[];
+}
+
+export interface FinancialPeriod {
+  period: string;          // e.g., "FY2023" or "Q1 2024"
+  endDate: string;
+  value: number;
+  form: string;
+  filed: string;
+}
+
+export interface CompanyFinancials {
+  company: EdgarCompanyInfo;
+  metrics: FinancialMetric[];
+  derivedMetrics: DerivedMetric[];
+  currency: string;
+  dataSource: string;
+}
+
+export interface DerivedMetric {
+  metric: string;
+  periods: { period: string; value: number | null }[];
+}
+
+// ── Filing Types ──
+
+export interface FilingInfo {
+  accessionNumber: string;
+  filingDate: string;
+  reportDate: string;
+  form: string;
+  primaryDocument: string;
+  primaryDocDescription: string;
+  items: string;
+}
+
+export interface FilingText {
+  company: EdgarCompanyInfo;
+  filing: FilingInfo;
+  text: string;
+  truncated: boolean;
+}
+
+// ── Stock Data Types ──
+
+export interface StockQuote {
+  ticker: string;
+  name: string;
+  price: number;
+  change: number;
+  changePercent: number;
+  marketCap: number | null;
+  peRatio: number | null;
+  forwardPE: number | null;
+  dividendYield: number | null;
+  fiftyTwoWeekHigh: number;
+  fiftyTwoWeekLow: number;
+  avgVolume: number;
+  beta: number | null;
+}
+
+export interface StockPricePoint {
+  date: string;
+  open: number;
+  high: number;
+  low: number;
+  close: number;
+  volume: number;
+}
+
+export interface StockData {
+  quote: StockQuote;
+  history: StockPricePoint[];
+  period: string;
+  interval: string;
+}
+
+// ── FRED Types ──
+
+export interface FredSeriesInfo {
+  id: string;
+  title: string;
+  units: string;
+  frequency: string;
+  seasonalAdjustment: string;
+  lastUpdated: string;
+  notes: string;
+}
+
+export interface FredObservation {
+  date: string;
+  value: number | null;
+}
+
+export interface MacroIndicatorData {
+  series: FredSeriesInfo;
+  observations: FredObservation[];
+}
+
+// ── Comparison Types ──
+
+export interface CompanyComparison {
+  companies: string[];
+  metrics: ComparisonMetric[];
+  period: string;
+}
+
+export interface ComparisonMetric {
+  metric: string;
+  values: { ticker: string; value: number | null }[];
+  rankings: { ticker: string; rank: number }[];
+}
+
+// ── Industry Benchmark Types ──
+
+export interface IndustryBenchmarks {
+  sicCode: string;
+  sicDescription: string;
+  peerCount: number;
+  peers: string[];
+  benchmarks: BenchmarkMetric[];
+}
+
+export interface BenchmarkMetric {
+  metric: string;
+  median: number | null;
+  mean: number | null;
+  p25: number | null;
+  p75: number | null;
+  min: number | null;
+  max: number | null;
+}
