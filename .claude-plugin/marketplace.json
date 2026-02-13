@@ -7,9 +7,9 @@
   "plugins": [
     {
       "name": "AI-Toolkit",
-      "description": "Deep Learning, Reinforcement Learning, Prompt Optimization, x402 Web3 Payments, Kubernetes Debugging, Legacy API Compatibility, and OpenClaw Setup skills",
+      "description": "Deep Learning, Reinforcement Learning, Prompt Optimization, x402 Web3 Payments, and OpenClaw Setup skills",
       "version": "2.1.0",
-      "source": "./",
+      "source": "./AI-Toolkit",
       "author": {
         "name": "Antony Zaki"
       }

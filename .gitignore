@@ -1,24 +1,24 @@
 # Ignore everything
 *
 
-# Except the plugin structure
+# Except the marketplace and plugin structure
 !.claude-plugin/
 !.claude-plugin/**
 !AI-Toolkit/
 !AI-Toolkit/**
-!skills
 !consulting-toolkit/
 !consulting-toolkit/**
-!projects/
-!projects/**
-!docs/
-!docs/**
 
-# But ignore build artifacts within projects
+# But ignore build artifacts within plugins
 __pycache__/
 *.pyc
 *.keras
 output/
+node_modules/
+.DS_Store
+
+# Large local directories
+archieve/
 
 !README.md
 !LICENSE

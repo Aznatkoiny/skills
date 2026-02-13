@@ -38,6 +38,7 @@ Skills for building AI/ML systems and optimizing prompts.
 | **cpp-reinforcement-learning** | C++ RL with libtorch and modern C++17/20 for performance-critical applications |
 | **prompt-optimizer** | Optimize prompts for Claude 4.x using Anthropic's official best practices |
 | **x402-payments** | Build x402 protocol apps — HTTP-native USDC payments on Base (EVM) and Solana (SVM) |
+| **openclaw-setup** | Set up and configure OpenClaw with Anthropic auth, messaging channels, and VPS deployment |
 
 ### [consulting-toolkit](consulting-toolkit/)
 
@@ -51,12 +52,6 @@ Multi-agent consulting system replicating top-tier strategy engagement structure
 | **MCP Server** | Financial Intelligence — 7 tools for SEC EDGAR, FRED, and Yahoo Finance data |
 
 ---
-
-## Projects
-
-| Project | Description |
-|---------|-------------|
-| [stock_predictor](projects/stock_predictor/) | LSTM-based stock price forecasting with technical indicators |
 
 ## Local Development
 
