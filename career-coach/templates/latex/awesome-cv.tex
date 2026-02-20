@@ -1,0 +1,184 @@
+% ============================================================
+% awesome-cv.tex — Awesome-CV Inspired Elegant Resume
+% Large name header, icon contact row, clean section dividers.
+% Uses fontawesome5 for icons (included in TeX Live 2020+).
+% Compile with: xelatex awesome-cv.tex
+%
+% USAGE: Replace \newcommand values with your data.
+% ============================================================
+
+\documentclass[11pt, letterpaper]{article}
+
+% ---- Packages -----------------------------------------------
+\usepackage[
+  left=0.7in,
+  right=0.7in,
+  top=0.55in,
+  bottom=0.55in
+]{geometry}
+\usepackage{fontspec}
+\usepackage{fontawesome5}      % icon set (TeX Live 2020+)
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{microtype}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{parskip}
+
+% ---- Fonts --------------------------------------------------
+\setmainfont{TeX Gyre Termes}
+\setsansfont{TeX Gyre Heros}
+\newfontfamily\lightfont[]{TeX Gyre Heros}
+
+% ---- Colors -------------------------------------------------
+\definecolor{themeRed}{HTML}{BE2B28}      % accent / section rules
+\definecolor{headerName}{HTML}{1A1A2E}    % name color
+\definecolor{subName}{HTML}{BE2B28}       % subtitle color
+\definecolor{grayText}{HTML}{555555}
+\definecolor{lightRule}{HTML}{DDDDDD}
+\definecolor{iconColor}{HTML}{BE2B28}
+
+% ---- Hyperlinks ---------------------------------------------
+\hypersetup{colorlinks=true, urlcolor=themeRed, hidelinks}
+
+% ---- Page style ---------------------------------------------
+\pagestyle{empty}
+
+% ---- Custom Commands (REPLACE WITH YOUR DATA) ---------------
+\newcommand{\resumeFirstName}{Christopher}
+\newcommand{\resumeLastName}{Morgan}
+\newcommand{\resumeSubtitle}{Software Engineering Manager}
+\newcommand{\resumePhone}{+1 (555) 321-9876}
+\newcommand{\resumeEmail}{chris.morgan@example.com}
+\newcommand{\resumeLinkedIn}{linkedin.com/in/chrismorgandev}
+\newcommand{\resumeGitHub}{github.com/cmorgan}
+\newcommand{\resumeWebsite}{chrismorgan.dev}
+\newcommand{\resumeLocation}{Boston, MA}
+
+% ---- Section Formatting ------------------------------------
+\titleformat{\section}
+  {\color{themeRed}\bfseries\large\sffamily}
+  {}
+  {0em}
+  {}
+  [\vspace{-6pt}\color{themeRed}\rule{\linewidth}{1.2pt}\vspace{2pt}]
+
+\titlespacing{\section}{0pt}{12pt}{6pt}
+
+% ---- Experience entry: {Dates}{Company}{Role}{Location} -----
+\newcommand{\cvEntry}[4]{%
+  \noindent
+  \begin{tabularx}{\textwidth}{@{}l X r@{}}
+    {\small\color{grayText}#1} & \textbf{#3} \textit{\color{grayText}@ #2} & {\small\color{grayText}#4}
+  \end{tabularx}
+  \vspace{2pt}
+}
+
+% ---- Education entry: {Dates}{Institution}{Degree}{GPA} -----
+\newcommand{\cvEduEntry}[4]{%
+  \noindent
+  \begin{tabularx}{\textwidth}{@{}l X r@{}}
+    {\small\color{grayText}#1} & \textbf{#3}, \textit{\color{grayText}#2} & {\small\color{grayText}GPA: #4}
+  \end{tabularx}
+  \vspace{2pt}
+}
+
+% ---- Contact icon macro: {icon-command}{text}{href} ---------
+\newcommand{\contactIcon}[3]{%
+  {\color{iconColor}#1}\ \href{#3}{\small\color{grayText}#2}%
+}
+
+% ============================================================
+\begin{document}
+
+% ---- Header -------------------------------------------------
+\begin{center}
+  {\fontsize{34pt}{36pt}\selectfont\sffamily\bfseries\color{headerName}%
+    \resumeFirstName\ {\color{themeRed}\resumeLastName}}\\[4pt]
+  {\large\sffamily\color{grayText}\resumeSubtitle}\\[8pt]
+  % ---- Contact row ---
+  \contactIcon{\faPhone}{\resumePhone}{tel:\resumePhone}\quad
+  \contactIcon{\faEnvelope}{\resumeEmail}{mailto:\resumeEmail}\quad
+  \contactIcon{\faLinkedin}{\resumeLinkedIn}{https://\resumeLinkedIn}\quad
+  \contactIcon{\faGithub}{\resumeGitHub}{https://\resumeGitHub}\quad
+  \contactIcon{\faGlobe}{\resumeWebsite}{https://\resumeWebsite}\quad
+  \contactIcon{\faMapMarker*}{\resumeLocation}{}
+\end{center}
+
+\vspace{2pt}
+\noindent{\color{themeRed}\rule{\textwidth}{1.5pt}}
+\vspace{4pt}
+
+% ---- Summary ------------------------------------------------
+\section{Summary}
+% PLACEHOLDER: Replace with your own 2–3 sentence summary.
+Engineering leader with 10+ years building high-performance distributed systems and
+leading cross-functional teams. Proven record of scaling engineering orgs from 5 to 40+
+while shipping reliable, customer-centric products. Advocate for engineering excellence,
+psychological safety, and continuous learning.
+
+% ---- Experience ---------------------------------------------
+\section{Experience}
+
+\cvEntry{2021 – Present}{Horizon Technologies}{VP of Engineering}{Boston, MA}
+\begin{itemize}[leftmargin=1.5em, itemsep=1pt, topsep=2pt]
+  \item % PLACEHOLDER: Quantified leadership achievement.
+        Scaled engineering team from 12 to 45, establishing hiring bar and onboarding program.
+  \item Drove technical strategy achieving 99.995\% SLA across 3 core platform services.
+  \item Reduced time-to-production from 3 weeks to 2 days via platform automation initiative.
+  \item Partnered with CPO and CEO on annual planning and OKR setting; reported to board.
+\end{itemize}
+\vspace{6pt}
+
+\cvEntry{2018 – 2021}{Nexus Cloud}{Engineering Manager}{New York, NY}
+\begin{itemize}[leftmargin=1.5em, itemsep=1pt, topsep=2pt]
+  \item % PLACEHOLDER: Quantified team achievement.
+        Led 3 teams (15 engineers) delivering \$40M ARR data platform.
+  \item Introduced incident management framework reducing MTTR by 55\%.
+  \item Partnered with Sales to close 3 enterprise deals requiring custom SLA guarantees.
+\end{itemize}
+\vspace{6pt}
+
+\cvEntry{2015 – 2018}{DataStream Inc.}{Senior Software Engineer}{San Francisco, CA}
+\begin{itemize}[leftmargin=1.5em, itemsep=1pt, topsep=2pt]
+  \item % PLACEHOLDER: Quantified individual contribution.
+        Designed real-time streaming pipeline processing 1B+ events/day in Apache Flink.
+  \item Tech lead for 4-engineer squad; shipped 3 major product milestones on schedule.
+\end{itemize}
+\vspace{6pt}
+
+\cvEntry{2013 – 2015}{Initech Solutions}{Software Engineer}{Austin, TX}
+\begin{itemize}[leftmargin=1.5em, itemsep=1pt, topsep=2pt]
+  \item % PLACEHOLDER: Quantified early-career achievement.
+        Built REST APIs serving 5M req/day; contributed to open-source client library.
+\end{itemize}
+
+% ---- Education ----------------------------------------------
+\section{Education}
+
+\cvEduEntry{2013}{Massachusetts Institute of Technology}{M.Eng. Computer Science}{4.9/5.0}
+\vspace{4pt}
+\cvEduEntry{2011}{MIT}{B.S. Electrical Engineering \& Computer Science}{4.8/5.0}
+
+% ---- Skills -------------------------------------------------
+\section{Skills}
+
+\noindent
+\begin{tabularx}{\textwidth}{@{}>{\bfseries}l X@{}}
+  Leadership    & Team building, OKR planning, executive communication, hiring \\
+  Engineering   & Distributed systems, microservices, event-driven architecture \\
+  Languages     & Python, Go, Java, TypeScript, SQL \\
+  Infrastructure & Kubernetes, AWS, GCP, Terraform, Datadog, Prometheus \\
+  Methodologies & Agile, SRE, DevSecOps, DORA metrics \\
+\end{tabularx}
+
+% ---- (Optional) Publications / Talks ------------------------
+% \section{Talks}
+% \begin{itemize}[leftmargin=1.5em, itemsep=2pt]
+%   \item ``Engineering at Scale'' — LeadDev London 2023
+%   \item ``From IC to Manager'' — SREcon Americas 2022
+% \end{itemize}
+
+\end{document}

@@ -1,0 +1,208 @@
+% ============================================================
+% technical-clean.tex — Two-Column Technical Resume
+% Left sidebar: skills, education, links
+% Right main column: experience, projects
+% Compile with: xelatex technical-clean.tex
+%
+% USAGE: Replace \newcommand values with your data.
+% ============================================================
+
+\documentclass[10pt, letterpaper]{article}
+
+% ---- Packages -----------------------------------------------
+\usepackage[margin=0in]{geometry}   % we manage all spacing manually
+\usepackage{fontspec}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{parskip}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{tabularx}
+\usepackage{microtype}
+\usepackage{calc}
+
+% ---- Fonts --------------------------------------------------
+\setmainfont{TeX Gyre Heros}        % clean sans-serif, free
+\newfontfamily\headingfont{TeX Gyre Heros}
+
+% ---- Colors -------------------------------------------------
+\definecolor{sidebarBg}{HTML}{1E2A3A}
+\definecolor{sidebarText}{HTML}{E8EDF2}
+\definecolor{sidebarAccent}{HTML}{4AAEFF}
+\definecolor{mainText}{HTML}{1A1A1A}
+\definecolor{accentBlue}{HTML}{1A5276}
+\definecolor{mutedGray}{HTML}{666666}
+\definecolor{ruleGray}{HTML}{CCCCCC}
+
+% ---- Dimensions ---------------------------------------------
+\newlength{\sidebarW}
+\setlength{\sidebarW}{0.30\paperwidth}
+\newlength{\mainW}
+\setlength{\mainW}{\paperwidth - \sidebarW}
+\newlength{\innerPad}
+\setlength{\innerPad}{14pt}
+
+% ---- Hyperlinks ---------------------------------------------
+\hypersetup{colorlinks=true, urlcolor=sidebarAccent, hidelinks}
+
+% ---- Suppress page number -----------------------------------
+\pagestyle{empty}
+
+% ---- Custom Commands (REPLACE WITH YOUR DATA) ---------------
+\newcommand{\resumeName}{Alex Johnson}
+\newcommand{\resumeTitle}{Senior Software Engineer}
+\newcommand{\resumePhone}{(555) 987-6543}
+\newcommand{\resumeEmail}{alex@example.com}
+\newcommand{\resumeLinkedIn}{linkedin.com/in/alexjohnson}
+\newcommand{\resumeGitHub}{github.com/alexjohnson}
+\newcommand{\resumeLocation}{Seattle, WA}
+
+% ---- Sidebar section heading --------------------------------
+\newcommand{\sideSection}[1]{%
+  \vspace{10pt}
+  {\color{sidebarAccent}\bfseries\small\MakeUppercase{#1}}\\[-2pt]
+  {\color{sidebarAccent}\rule{\linewidth}{0.4pt}}
+  \vspace{4pt}
+}
+
+% ---- Main section heading -----------------------------------
+\newcommand{\mainSection}[1]{%
+  \vspace{10pt}
+  {\color{accentBlue}\bfseries\normalsize\MakeUppercase{#1}}\\[-4pt]
+  {\color{ruleGray}\rule{\linewidth}{0.6pt}}
+  \vspace{4pt}
+}
+
+% ---- Experience entry: {Role}{Company}{Dates}{Location} -----
+\newcommand{\expEntry}[4]{%
+  \textbf{#1} \hfill {\small\color{mutedGray}#3}\\
+  {\small\color{accentBlue}#2} \hfill {\small\color{mutedGray}#4}
+  \vspace{2pt}
+}
+
+% ---- Skill bar (TikZ) ---------------------------------------
+% Usage: \skillbar{SkillName}{0.8}  (0.0–1.0)
+\newcommand{\skillbar}[2]{%
+  \vspace{2pt}
+  {\small\color{sidebarText}#1}\\
+  \begin{tikzpicture}
+    \fill[sidebarBg!60] (0,0) rectangle (\linewidth, 4pt);
+    \fill[sidebarAccent] (0,0) rectangle (#2\linewidth, 4pt);
+  \end{tikzpicture}
+  \vspace{1pt}
+}
+
+% ============================================================
+\begin{document}
+\noindent
+% ---- Two-column layout via minipage -------------------------
+\begin{minipage}[t][\paperheight][t]{\sidebarW}
+  \begin{tikzpicture}[remember picture, overlay]
+    \fill[sidebarBg] (0,0) rectangle (\sidebarW, -\paperheight);
+  \end{tikzpicture}
+  \color{sidebarText}
+  \hspace*{\innerPad}\begin{minipage}{\sidebarW - 2\innerPad}
+    \vspace{\innerPad}
+
+    % ---- Name & Title ---
+    {\large\bfseries\color{white}\resumeName}\\[2pt]
+    {\small\color{sidebarAccent}\resumeTitle}
+
+    % ---- Contact ---
+    \sideSection{Contact}
+    \begin{itemize}[leftmargin=0pt, label={}, itemsep=2pt]
+      \item {\small\resumeLocation}
+      \item {\small\href{tel:\resumePhone}{\resumePhone}}
+      \item {\small\href{mailto:\resumeEmail}{\resumeEmail}}
+      \item {\small\href{https://\resumeLinkedIn}{\resumeLinkedIn}}
+      \item {\small\href{https://\resumeGitHub}{\resumeGitHub}}
+    \end{itemize}
+
+    % ---- Technical Skills ---
+    \sideSection{Technical Skills}
+    % PLACEHOLDER: Adjust skill levels (0.0–1.0)
+    \skillbar{Python}{0.95}
+    \skillbar{Go}{0.85}
+    \skillbar{TypeScript}{0.80}
+    \skillbar{Kubernetes}{0.75}
+    \skillbar{PostgreSQL}{0.80}
+    \skillbar{AWS / GCP}{0.70}
+    \skillbar{Terraform}{0.65}
+    \skillbar{Rust}{0.55}
+
+    % ---- Education ---
+    \sideSection{Education}
+    {\small\bfseries\color{white}B.S. Computer Science}\\
+    {\small University of Washington}\\
+    {\small\color{sidebarAccent}2017}\\[4pt]
+    {\small GPA: 3.9 / 4.0}
+
+    % ---- Certifications ---
+    \sideSection{Certifications}
+    \begin{itemize}[leftmargin=0pt, label={--}, itemsep=2pt]
+      \item {\small AWS Solutions Architect (2023)}
+      \item {\small CKA – Kubernetes (2022)}
+    \end{itemize}
+
+    % ---- Languages ---
+    \sideSection{Languages}
+    \begin{itemize}[leftmargin=0pt, label={}, itemsep=2pt]
+      \item {\small English — Native}
+      \item {\small Spanish — Professional}
+    \end{itemize}
+
+  \end{minipage}
+\end{minipage}%
+%
+% ---- Main Column --------------------------------------------
+\begin{minipage}[t][\paperheight][t]{\mainW}
+  \color{mainText}
+  \hspace*{\innerPad}\begin{minipage}{\mainW - 2\innerPad}
+    \vspace{\innerPad}
+
+    \mainSection{Experience}
+
+    \expEntry{Staff Engineer}{Hyperscale Systems Inc.}{Jan 2022 – Present}{Seattle, WA}
+    \begin{itemize}[leftmargin=1.2em, itemsep=1pt, topsep=2pt, rightmargin=0pt]
+      \item % PLACEHOLDER: Quantified impact statement.
+            Architected multi-region data pipeline processing 500M events/day with 99.99\% uptime.
+      \item Reduced infrastructure cost by \$2M/yr by optimizing Kubernetes resource allocation.
+      \item Led 6-engineer team delivering platform re-architecture on schedule.
+    \end{itemize}
+    \vspace{6pt}
+
+    \expEntry{Senior Engineer}{CloudPath Corp.}{Mar 2019 – Dec 2021}{Remote}
+    \begin{itemize}[leftmargin=1.2em, itemsep=1pt, topsep=2pt]
+      \item % PLACEHOLDER: Quantified impact statement.
+            Built internal developer platform adopted by 200+ engineers, cutting deploy time by 60\%.
+      \item Implemented zero-downtime blue/green deployments for critical payment services.
+    \end{itemize}
+    \vspace{6pt}
+
+    \expEntry{Software Engineer}{DataBridge LLC}{Jun 2017 – Feb 2019}{San Francisco, CA}
+    \begin{itemize}[leftmargin=1.2em, itemsep=1pt, topsep=2pt]
+      \item % PLACEHOLDER: Quantified impact statement.
+            Migrated legacy ETL jobs to Apache Spark, reducing nightly batch time from 6h to 45min.
+    \end{itemize}
+
+    \mainSection{Projects}
+
+    \textbf{OpenMetrics Gateway} \hfill
+    \href{https://github.com/alexjohnson/openmetrics-gw}{\small\color{accentBlue}github.com/alexjohnson/openmetrics-gw}\\
+    {\small Open-source Prometheus-compatible metrics aggregation proxy written in Go. 800+ GitHub stars.}
+    \vspace{6pt}
+
+    \textbf{K8s Cost Analyzer} \hfill
+    \href{https://github.com/alexjohnson/k8s-cost}{\small\color{accentBlue}github.com/alexjohnson/k8s-cost}\\
+    {\small CLI tool for per-namespace Kubernetes cost attribution. Used in 50+ production clusters.}
+
+    \mainSection{Publications \& Talks}
+    \begin{itemize}[leftmargin=1.2em, itemsep=2pt, topsep=2pt]
+      \item ``Scaling Stateful Services at 500M Events/Day'' — KubeCon NA 2023
+      \item ``Developer Platforms That Don't Suck'' — PlatformCon 2022
+    \end{itemize}
+
+  \end{minipage}
+\end{minipage}
+
+\end{document}

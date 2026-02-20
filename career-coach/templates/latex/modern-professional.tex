@@ -1,0 +1,143 @@
+% ============================================================
+% modern-professional.tex — Single-Column ATS-Friendly Resume
+% Compile with: xelatex modern-professional.tex
+%
+% USAGE: Replace the \newcommand values below with your data.
+% ============================================================
+
+\documentclass[11pt, letterpaper]{article}
+
+% ---- Packages -----------------------------------------------
+\usepackage[margin=0.75in]{geometry}
+\usepackage{fontspec}           % requires xelatex
+\usepackage{hyperref}
+\usepackage{parskip}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{array}
+
+% ---- Fonts (freely available via TeX Live) ------------------
+\setmainfont{TeX Gyre Termes}   % free Times-like serif
+\setsansfont{TeX Gyre Heros}    % free Helvetica-like sans
+
+% ---- Colors -------------------------------------------------
+\definecolor{accent}{HTML}{1A3A5C}
+\definecolor{muted}{HTML}{555555}
+
+% ---- Hyperlinks ---------------------------------------------
+\hypersetup{
+  colorlinks=true,
+  urlcolor=accent,
+  hidelinks
+}
+
+% ---- Section Formatting ------------------------------------
+\titleformat{\section}
+  {\large\bfseries\color{accent}}
+  {}
+  {0em}
+  {}
+  [\color{accent}\titlerule]
+
+\titlespacing{\section}{0pt}{10pt}{6pt}
+
+% ---- Custom Commands ----------------------------------------
+% Replace these with your own data
+\newcommand{\resumeName}{Jane Doe}
+\newcommand{\resumePhone}{(555) 123-4567}
+\newcommand{\resumeEmail}{jane.doe@email.com}
+\newcommand{\resumeLinkedIn}{linkedin.com/in/janedoe}
+\newcommand{\resumeGitHub}{github.com/janedoe}
+\newcommand{\resumeLocation}{San Francisco, CA}
+
+% ---- Helper macros ------------------------------------------
+\newcommand{\contactSep}{\quad|\quad}
+
+% Experience entry: {Role}{Company}{Location}{Dates}
+\newcommand{\expEntry}[4]{%
+  \textbf{#1} \hfill \textit{#3 | #4}\\
+  \textit{\color{muted}#2}
+  \vspace{2pt}
+}
+
+% Education entry: {Degree}{Institution}{Location}{Dates}
+\newcommand{\eduEntry}[4]{%
+  \textbf{#1} \hfill \textit{#3 | #4}\\
+  \textit{\color{muted}#2}
+  \vspace{2pt}
+}
+
+% ---- Suppress page number -----------------------------------
+\pagestyle{empty}
+
+% ============================================================
+\begin{document}
+
+% ---- Header -------------------------------------------------
+\begin{center}
+  {\LARGE\bfseries\resumeName}\\[4pt]
+  \small
+  \resumeLocation\contactSep
+  \href{tel:\resumePhone}{\resumePhone}\contactSep
+  \href{mailto:\resumeEmail}{\resumeEmail}\\
+  \href{https://\resumeLinkedIn}{\resumeLinkedIn}\contactSep
+  \href{https://\resumeGitHub}{\resumeGitHub}
+\end{center}
+
+% ---- Summary ------------------------------------------------
+\section{Summary}
+% PLACEHOLDER: Replace with a 2–3 sentence professional summary.
+Results-driven software engineer with 5+ years of experience building scalable
+web applications. Adept at cross-functional collaboration and delivering
+high-quality products on time. Passionate about clean code and developer tooling.
+
+% ---- Experience ---------------------------------------------
+\section{Experience}
+
+\expEntry{Senior Software Engineer}{Acme Corporation}{San Francisco, CA}{Jan 2022 – Present}
+\begin{itemize}[leftmargin=1.5em, itemsep=1pt, topsep=2pt]
+  \item % PLACEHOLDER: Achievement with quantified impact.
+        Led migration of monolithic API to microservices, reducing p99 latency by 40\%.
+  \item % PLACEHOLDER: Achievement with quantified impact.
+        Mentored 3 junior engineers; established code-review standards adopted team-wide.
+  \item % PLACEHOLDER: Achievement with quantified impact.
+        Shipped feature X that increased user retention by 15\% within 60 days.
+\end{itemize}
+\vspace{6pt}
+
+\expEntry{Software Engineer}{Startup Inc.}{Remote}{Jul 2019 – Dec 2021}
+\begin{itemize}[leftmargin=1.5em, itemsep=1pt, topsep=2pt]
+  \item % PLACEHOLDER: Achievement with quantified impact.
+        Built real-time dashboard used by 10k+ daily active users.
+  \item % PLACEHOLDER: Achievement with quantified impact.
+        Reduced CI pipeline time from 18 min to 7 min by parallelizing test suites.
+\end{itemize}
+\vspace{6pt}
+
+% ---- Education ----------------------------------------------
+\section{Education}
+
+\eduEntry{B.S. Computer Science}{University of California, Berkeley}{Berkeley, CA}{May 2019}
+\begin{itemize}[leftmargin=1.5em, itemsep=1pt, topsep=2pt]
+  \item GPA: 3.8 / 4.0 \quad|\quad Relevant coursework: Algorithms, Distributed Systems, ML
+\end{itemize}
+
+% ---- Skills -------------------------------------------------
+\section{Skills}
+
+\begin{tabular}{@{}l l}
+  \textbf{Languages}   & Python, Go, TypeScript, Rust \\
+  \textbf{Frameworks}  & React, FastAPI, gRPC, Kubernetes \\
+  \textbf{Databases}   & PostgreSQL, Redis, BigQuery \\
+  \textbf{Tools}       & Docker, Terraform, GitHub Actions, Datadog \\
+\end{tabular}
+
+% ---- (Optional) Certifications / Projects -------------------
+% \section{Projects}
+% \expEntry{Open Source Project}{github.com/janedoe/project}{Remote}{2023}
+% \begin{itemize}[leftmargin=1.5em, itemsep=1pt, topsep=2pt]
+%   \item PLACEHOLDER: Describe the project and its impact.
+% \end{itemize}
+
+\end{document}

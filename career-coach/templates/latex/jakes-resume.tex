@@ -1,0 +1,178 @@
+% ============================================================
+% jakes-resume.tex — Jake Gutierrez Style Single-Column Resume
+% Clean, compact, optimized for one page. Uses tabularx.
+% Compile with: xelatex jakes-resume.tex
+%
+% USAGE: Replace \newcommand values with your data.
+% ============================================================
+
+\documentclass[letterpaper, 11pt]{article}
+
+% ---- Packages -----------------------------------------------
+\usepackage[
+  left=0.5in,
+  right=0.5in,
+  top=0.5in,
+  bottom=0.5in
+]{geometry}
+\usepackage{fontspec}
+\usepackage{latexsym}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{tabularx}
+\usepackage{xcolor}
+\usepackage{microtype}
+
+% ---- Fonts --------------------------------------------------
+\setmainfont{TeX Gyre Termes}
+
+% ---- Hyperlinks ---------------------------------------------
+\hypersetup{colorlinks, urlcolor=black, hidelinks}
+
+% ---- Page style ---------------------------------------------
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% ---- Section Formatting ------------------------------------
+\titleformat{\section}{
+  \vspace{-6pt}\scshape\raggedright\large\bfseries
+}{}{0em}{}[\color{black}\titlerule\vspace{-5pt}]
+
+% ---- Custom Commands (REPLACE WITH YOUR DATA) ---------------
+\newcommand{\resumeName}{Jake Gutierrez}
+\newcommand{\resumePhone}{+1 (555) 000-0000}
+\newcommand{\resumeEmail}{jake@example.com}
+\newcommand{\resumeLinkedIn}{linkedin.com/in/jake}
+\newcommand{\resumeGitHub}{github.com/jake}
+
+% ---- Resume Item --------------------------------------------
+\newcommand{\resumeItem}[1]{
+  \item\small{#1\vspace{-2pt}}
+}
+
+% ---- Subheading (role, company, location, dates) ------------
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+  \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+    \textbf{#1} & #2 \\
+    \textit{\small#3} & \textit{\small #4} \\
+  \end{tabular*}\vspace{-7pt}
+}
+
+% ---- Project entry ------------------------------------------
+\newcommand{\resumeProjectHeading}[2]{
+  \item
+  \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+    \small#1 & #2 \\
+  \end{tabular*}\vspace{-7pt}
+}
+
+% ---- List environments --------------------------------------
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}[leftmargin=0.15in]}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+% ============================================================
+\begin{document}
+
+% ---- Header -------------------------------------------------
+\begin{center}
+  {\Huge\scshape\resumeName}\\[4pt]
+  \small
+  \resumePhone\ $|$\
+  \href{mailto:\resumeEmail}{\underline{\resumeEmail}}\ $|$\
+  \href{https://\resumeLinkedIn}{\underline{\resumeLinkedIn}}\ $|$\
+  \href{https://\resumeGitHub}{\underline{\resumeGitHub}}
+\end{center}
+
+% ---- Education ----------------------------------------------
+\section{Education}
+\resumeSubHeadingListStart
+  \resumeSubheading
+    {Southwestern University}{Georgetown, TX}
+    {Bachelor of Arts in Computer Science, Minor in Business}{Aug. 2018 -- May 2021}
+  % PLACEHOLDER: Add more education entries as needed.
+  \resumeSubheading
+    {Blinn College}{Bryan, TX}
+    {Associate's in Liberal Arts}{Aug. 2014 -- May 2018}
+\resumeSubHeadingListEnd
+
+% ---- Experience ---------------------------------------------
+\section{Experience}
+\resumeSubHeadingListStart
+
+  \resumeSubheading
+    {Undergraduate Research Assistant}{June 2020 -- Present}
+    {Texas A\&M University}{College Station, TX}
+    \resumeItemListStart
+      \resumeItem{Developed a REST API using FastAPI and PostgreSQL to store data from learning management systems.}
+      \resumeItem{% PLACEHOLDER: Replace with your quantified achievement.
+                  Developed a full-stack web app using Flask, React, PostgreSQL deploying to Heroku.}
+      \resumeItem{Explored methods to combat federated learning poisoning attacks on medical data sets.}
+      \resumeItem{Worked with medical professionals to prove that the proposed approach is pathologically feasible.}
+    \resumeItemListEnd
+
+  \resumeSubheading
+    {Information Technology Support Specialist}{Sep. 2018 -- Present}
+    {Southwestern University}{Georgetown, TX}
+    \resumeItemListStart
+      \resumeItem{% PLACEHOLDER: Replace with your quantified achievement.
+                  Communicate with managers to set up campus computers used on campus network.}
+      \resumeItem{Assess and troubleshoot computer problems brought by students, faculty and staff.}
+      \resumeItem{Maintain upkeep of computers, classroom equipment, and 200 printers across campus.}
+    \resumeItemListEnd
+
+  \resumeSubheading
+    {Artificial Intelligence Research Assistant}{May 2019 -- July 2019}
+    {Southwestern University}{Georgetown, TX}
+    \resumeItemListStart
+      \resumeItem{Explored methods to generate video game dungeons based on \emph{The Legend of Zelda}.}
+      \resumeItem{Developed a game in Java to test the generated dungeons.}
+      \resumeItem{Contributed 50K+ lines of code to an established codebase via Git.}
+    \resumeItemListEnd
+
+\resumeSubHeadingListEnd
+
+% ---- Projects -----------------------------------------------
+\section{Projects}
+\resumeSubHeadingListStart
+
+  \resumeProjectHeading
+    {\textbf{Gitlytics} $|$ \emph{Python, Flask, React, PostgreSQL, Docker}}{June 2020 -- Present}
+    \resumeItemListStart
+      \resumeItem{% PLACEHOLDER: Replace with project description.
+                  Developed a full-stack web app allowing users to track GitHub repository contributions.}
+      \resumeItem{Implemented GitHub OAuth for user authentication, integrated with GitHub REST API.}
+      \resumeItem{Deployed on Heroku with PostgreSQL, visualizing data with Chart.js.}
+    \resumeItemListEnd
+
+  \resumeProjectHeading
+    {\textbf{Simple Paintball} $|$ \emph{Pygame, Python}}{May 2018 -- May 2020}
+    \resumeItemListStart
+      \resumeItem{Developed a multiplayer shooting game using Pygame and custom game loop logic.}
+      \resumeItem{Implemented online multiplayer using raw TCP sockets; supported up to 8 concurrent players.}
+    \resumeItemListEnd
+
+\resumeSubHeadingListEnd
+
+% ---- Technical Skills ---------------------------------------
+\section{Technical Skills}
+\begin{itemize}[leftmargin=0.15in, label={}]
+  \small{\item{
+    \textbf{Languages}{: Java, Python, C/C++, SQL (Postgres), JavaScript, HTML/CSS, R} \\
+    \textbf{Frameworks}{: React, Node.js, Flask, JUnit, WordPress, Material-UI, FastAPI} \\
+    \textbf{Developer Tools}{: Git, Docker, TravisCI, Google Cloud Platform, VS Code, PyCharm} \\
+    \textbf{Libraries}{: pandas, NumPy, Matplotlib} \\
+    % PLACEHOLDER: Add your own skills here.
+  }}
+\end{itemize}
+
+\end{document}

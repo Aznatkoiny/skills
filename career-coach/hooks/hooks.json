@@ -1,0 +1,14 @@
+[
+  {
+    "event": "PostToolUse",
+    "matcher": {
+      "tool_name": "Write"
+    },
+    "hooks": [
+      {
+        "type": "command",
+        "command": "${CLAUDE_PLUGIN_ROOT}/hooks/compile-latex.sh"
+      }
+    ]
+  }
+]

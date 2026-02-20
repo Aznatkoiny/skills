@@ -1,0 +1,240 @@
+% ============================================================
+% altacv.tex — AltaCV-Inspired Colorful Sidebar Resume
+% Left sidebar: photo placeholder, contact, skills, languages
+% Right main column: experience, education
+% Compile with: xelatex altacv.tex
+%
+% USAGE: Replace \newcommand values with your data.
+% ============================================================
+
+\documentclass[10pt, letterpaper]{article}
+
+% ---- Packages -----------------------------------------------
+\usepackage[margin=0in]{geometry}
+\usepackage{fontspec}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{microtype}
+\usepackage{graphicx}
+\usepackage{calc}
+
+% ---- Fonts --------------------------------------------------
+\setmainfont{TeX Gyre Heros}
+
+% ---- Colors -------------------------------------------------
+\definecolor{themeColor}{HTML}{35478C}    % sidebar background
+\definecolor{themeLight}{HTML}{4A6AB3}    % accent / bars
+\definecolor{themeTag}{HTML}{7B9FE0}      % skill tags
+\definecolor{sideText}{HTML}{EEF2F9}      % sidebar text
+\definecolor{mainText}{HTML}{1A1A1A}
+\definecolor{ruleColor}{HTML}{C0C8D8}
+\definecolor{muted}{HTML}{666666}
+
+% ---- Hyperlinks ---------------------------------------------
+\hypersetup{colorlinks=true, urlcolor=themeLight, hidelinks}
+
+% ---- Dimensions ---------------------------------------------
+\newlength{\sideW}
+\setlength{\sideW}{0.315\paperwidth}
+\newlength{\mainW}
+\setlength{\mainW}{\paperwidth - \sideW}
+\newlength{\pad}
+\setlength{\pad}{13pt}
+
+% ---- Suppress page number -----------------------------------
+\pagestyle{empty}
+
+% ---- Custom Commands (REPLACE WITH YOUR DATA) ---------------
+\newcommand{\resumeName}{Maria Santos}
+\newcommand{\resumeTitle}{Product Designer \& UX Lead}
+\newcommand{\resumeEmail}{maria@example.com}
+\newcommand{\resumePhone}{+1 (555) 234-5678}
+\newcommand{\resumeLocation}{Austin, TX}
+\newcommand{\resumeLinkedIn}{linkedin.com/in/mariasantos}
+\newcommand{\resumeWebsite}{mariasantos.design}
+
+% ---- Sidebar section heading --------------------------------
+\newcommand{\sideSection}[1]{%
+  \vspace{9pt}
+  {\color{sideText}\bfseries\small\MakeUppercase{#1}}\\[-3pt]
+  {\color{themeLight}\rule{\linewidth}{0.5pt}}
+  \vspace{4pt}
+}
+
+% ---- Main section heading -----------------------------------
+\newcommand{\mainSection}[1]{%
+  \vspace{10pt}
+  {\color{themeColor}\bfseries\large\MakeUppercase{#1}}\\[-4pt]
+  {\color{ruleColor}\rule{\linewidth}{0.7pt}}
+  \vspace{4pt}
+}
+
+% ---- Skill tag ----------------------------------------------
+\newcommand{\skilltag}[1]{%
+  \tikz[baseline]{
+    \node[
+      fill=themeTag!40, rounded corners=3pt,
+      inner xsep=5pt, inner ysep=2pt,
+      font=\tiny\color{themeColor}
+    ] {#1};
+  }\hspace{1pt}%
+}
+
+% ---- Skill rating (filled dots) -----------------------------
+% Usage: \skillrating{SkillName}{4}{5}
+\newcommand{\skillrating}[3]{%
+  \vspace{2pt}
+  \begin{tikzpicture}[baseline]
+    \node[anchor=west, font=\small\color{sideText}] at (0,0) {#1};
+    \foreach \i in {1,...,#3} {
+      \pgfmathsetmacro{\filled}{ifthenelse(\i<=#2,1,0)}
+      \ifnum\i>#2
+        \fill[sideText!30] ({0.16*\i + 2.6}, 0) circle (3.5pt);
+      \else
+        \fill[themeLight] ({0.16*\i + 2.6}, 0) circle (3.5pt);
+      \fi
+    }
+  \end{tikzpicture}\\
+}
+
+% ---- Experience entry: {Role}{Company}{Dates} ---------------
+\newcommand{\expEntry}[3]{%
+  \textbf{#1}\\
+  {\small\color{themeColor}#2}\hfill{\small\color{muted}#3}
+  \vspace{2pt}
+}
+
+% ---- Education entry: {Degree}{School}{Dates} ---------------
+\newcommand{\eduEntry}[3]{%
+  \textbf{\small#1}\\
+  {\small\color{themeColor}#2}\hfill{\small\color{muted}#3}
+  \vspace{2pt}
+}
+
+% ============================================================
+\begin{document}
+\noindent
+% ---- Sidebar ------------------------------------------------
+\begin{minipage}[t][\paperheight][t]{\sideW}
+  \begin{tikzpicture}[remember picture, overlay]
+    \fill[themeColor] (0,0) rectangle (\sideW, -\paperheight);
+  \end{tikzpicture}
+  \color{sideText}
+  \hspace*{\pad}\begin{minipage}{\sideW - 2\pad}
+    \vspace{\pad}
+
+    % ---- Photo placeholder ---
+    \begin{center}
+      \begin{tikzpicture}
+        \draw[themeLight, line width=2pt] (0,0) circle (1.2cm);
+        \node[font=\tiny\color{sideText!60}] at (0,0) {Photo};
+        % To use a real photo, replace circle with:
+        % \clip (0,0) circle (1.2cm);
+        % \node {\includegraphics[width=2.4cm]{photo.jpg}};
+      \end{tikzpicture}
+    \end{center}
+
+    % ---- Name & Title ---
+    \begin{center}
+      {\bfseries\large\color{white}\resumeName}\\[2pt]
+      {\small\color{themeTag}\resumeTitle}
+    \end{center}
+
+    % ---- Contact ---
+    \sideSection{Contact}
+    \begin{itemize}[leftmargin=0pt, label={}, itemsep=3pt]
+      \item {\small \resumeLocation}
+      \item {\small \href{tel:\resumePhone}{\resumePhone}}
+      \item {\small \href{mailto:\resumeEmail}{\resumeEmail}}
+      \item {\small \href{https://\resumeLinkedIn}{\resumeLinkedIn}}
+      \item {\small \href{https://\resumeWebsite}{\resumeWebsite}}
+    \end{itemize}
+
+    % ---- Core Skills (rated) ---
+    \sideSection{Core Skills}
+    % PLACEHOLDER: Adjust ratings (#2 = filled out of #3)
+    \skillrating{UX Research}{5}{5}
+    \skillrating{Figma}{5}{5}
+    \skillrating{Prototyping}{4}{5}
+    \skillrating{Data Analysis}{3}{5}
+    \skillrating{HTML / CSS}{4}{5}
+    \skillrating{Motion Design}{3}{5}
+
+    % ---- Tools (tags) ---
+    \sideSection{Tools}
+    \vspace{2pt}
+    \skilltag{Figma}
+    \skilltag{Miro}
+    \skilltag{Notion}
+    \skilltag{Jira}
+    \skilltag{Principle}
+    \skilltag{Framer}
+    \skilltag{Zeplin}
+    \skilltag{Adobe XD}
+    \skilltag{Maze}
+
+    % ---- Languages ---
+    \sideSection{Languages}
+    \skillrating{English}{5}{5}
+    \skillrating{Portuguese}{5}{5}
+    \skillrating{Spanish}{3}{5}
+
+  \end{minipage}
+\end{minipage}%
+%
+% ---- Main Column --------------------------------------------
+\begin{minipage}[t][\paperheight][t]{\mainW}
+  \color{mainText}
+  \hspace*{\pad}\begin{minipage}{\mainW - 2\pad}
+    \vspace{\pad}
+
+    \mainSection{Profile}
+    % PLACEHOLDER: 2–3 sentence professional summary.
+    Creative and data-driven UX Lead with 8+ years designing intuitive digital products.
+    Track record of increasing user engagement and reducing support tickets through
+    research-backed design decisions. Passionate about accessibility and design systems.
+
+    \mainSection{Experience}
+
+    \expEntry{UX Lead}{TechFlow Inc.}{Jan 2021 – Present}
+    \begin{itemize}[leftmargin=1.2em, itemsep=1pt, topsep=2pt]
+      \item % PLACEHOLDER: Quantified achievement.
+            Redesigned onboarding flow, lifting activation rate by 32\% (600k users affected).
+      \item Established company-wide design system used across 5 product squads.
+      \item Managed team of 4 designers; introduced weekly critique rituals.
+    \end{itemize}
+    \vspace{6pt}
+
+    \expEntry{Senior Product Designer}{Nimbus Corp}{Mar 2018 – Dec 2020}
+    \begin{itemize}[leftmargin=1.2em, itemsep=1pt, topsep=2pt]
+      \item % PLACEHOLDER: Quantified achievement.
+            Led end-to-end redesign of mobile app (4.2 → 4.7 App Store rating).
+      \item Ran 20+ moderated usability tests; synthesized findings into actionable design specs.
+    \end{itemize}
+    \vspace{6pt}
+
+    \expEntry{Product Designer}{Startup Studio}{Jun 2016 – Feb 2018}
+    \begin{itemize}[leftmargin=1.2em, itemsep=1pt, topsep=2pt]
+      \item % PLACEHOLDER: Quantified achievement.
+            Designed 3 zero-to-one products; one acquired by Nimbus Corp in 2018.
+    \end{itemize}
+
+    \mainSection{Education}
+
+    \eduEntry{M.S. Human-Computer Interaction}{Carnegie Mellon University}{2016}
+    \vspace{4pt}
+    \eduEntry{B.A. Graphic Design}{UT Austin}{2014}
+
+    \mainSection{Recognition}
+    \begin{itemize}[leftmargin=1.2em, itemsep=2pt, topsep=2pt]
+      \item Awwwards Site of the Day — TechFlow Onboarding (2022)
+      \item Finalist, IxDA Interaction Awards — Nimbus Mobile (2020)
+      \item Speaker, UX+Dev Summit 2023 — ``Bridging Design Systems and Engineering''
+    \end{itemize}
+
+  \end{minipage}
+\end{minipage}
+
+\end{document}

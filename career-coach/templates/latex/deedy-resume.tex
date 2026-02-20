@@ -1,0 +1,212 @@
+% ============================================================
+% deedy-resume.tex — Deedy-Style Two-Column Resume
+% Narrower left column: skills, education, links
+% Wider right column: experience, projects
+% Compile with: xelatex deedy-resume.tex
+%
+% USAGE: Replace \newcommand values with your data.
+% ============================================================
+
+\documentclass[letterpaper]{article}
+
+% ---- Packages -----------------------------------------------
+\usepackage[
+  left=0.4in,
+  right=0.4in,
+  top=0.4in,
+  bottom=0.4in
+]{geometry}
+\usepackage{fontspec}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{microtype}
+\usepackage{parskip}
+
+% ---- Fonts --------------------------------------------------
+\setmainfont{TeX Gyre Heros}
+\newfontfamily\namefont[Scale=2.2]{TeX Gyre Heros}
+
+% ---- Colors -------------------------------------------------
+\definecolor{headerColor}{HTML}{1C2833}
+\definecolor{leftBg}{HTML}{F2F3F4}
+\definecolor{sectionRule}{HTML}{2874A6}
+\definecolor{muted}{HTML}{717D7E}
+\definecolor{linkColor}{HTML}{2874A6}
+
+% ---- Hyperlinks ---------------------------------------------
+\hypersetup{colorlinks=true, urlcolor=linkColor, hidelinks}
+
+% ---- Page style ---------------------------------------------
+\pagestyle{empty}
+
+% ---- Column widths ------------------------------------------
+\newlength{\leftColW}
+\newlength{\rightColW}
+\newlength{\colSep}
+\setlength{\leftColW}{0.30\textwidth}
+\setlength{\colSep}{0.02\textwidth}
+\setlength{\rightColW}{0.68\textwidth}
+
+% ---- Section formatting (left column) -----------------------
+\newcommand{\lsection}[1]{%
+  \vspace{8pt}
+  {\color{sectionRule}\bfseries\small\MakeUppercase{#1}}\\[-3pt]
+  {\color{sectionRule}\rule{\linewidth}{0.5pt}}
+  \vspace{3pt}
+}
+
+% ---- Section formatting (right column) ----------------------
+\newcommand{\rsection}[1]{%
+  \vspace{8pt}
+  {\color{sectionRule}\large\bfseries\MakeUppercase{#1}}\\[-4pt]
+  {\color{sectionRule}\rule{\linewidth}{0.8pt}}
+  \vspace{3pt}
+}
+
+% ---- Experience entry: {Role}{Company}{Dates}{Location} -----
+\newcommand{\rEntry}[4]{%
+  \noindent
+  \textbf{#1} \hfill {\small\color{muted}#3}\\
+  \textit{\color{linkColor}\small#2} \hfill {\small\color{muted}#4}
+  \vspace{2pt}
+}
+
+% ---- Custom Commands (REPLACE WITH YOUR DATA) ---------------
+\newcommand{\resumeName}{Deedy Das}
+\newcommand{\resumeEmail}{deedy@example.com}
+\newcommand{\resumePhone}{(555) 111-2222}
+\newcommand{\resumeLinkedIn}{linkedin.com/in/deedy}
+\newcommand{\resumeGitHub}{github.com/deedy}
+\newcommand{\resumeWebsite}{deedy.me}
+\newcommand{\resumeLocation}{New York, NY}
+
+% ============================================================
+\begin{document}
+
+% ---- Full-width Header --------------------------------------
+\noindent
+\begin{minipage}{\textwidth}
+  \centering
+  {\namefont\bfseries\color{headerColor}\resumeName}\\[4pt]
+  \small
+  \href{mailto:\resumeEmail}{\resumeEmail}\quad|\quad
+  \resumePhone\quad|\quad
+  \href{https://\resumeLinkedIn}{\resumeLinkedIn}\quad|\quad
+  \href{https://\resumeGitHub}{\resumeGitHub}
+\end{minipage}
+\vspace{8pt}
+
+\noindent\rule{\textwidth}{0.8pt}
+\vspace{4pt}
+
+% ---- Two-column body ----------------------------------------
+\noindent
+\begin{minipage}[t]{\leftColW}
+
+  % ---- Education ---
+  \lsection{Education}
+
+  \textbf{\small B.S. Computer Science}\\
+  {\small Georgia Institute of Technology}\\
+  {\small\color{muted}May 2016 | GPA 3.94}\\[6pt]
+
+  % PLACEHOLDER: Add more education as needed.
+  \textbf{\small High School Diploma}\\
+  {\small Delhi Public School}\\
+  {\small\color{muted}May 2012}
+
+  % ---- Links ---
+  \lsection{Links}
+  \begin{itemize}[leftmargin=0pt, label={}, itemsep=2pt]
+    \item \href{https://\resumeWebsite}{\small\resumeWebsite}
+    \item \href{https://\resumeGitHub}{\small\resumeGitHub}
+    \item \href{https://\resumeLinkedIn}{\small\resumeLinkedIn}
+  \end{itemize}
+
+  % ---- Core Skills ---
+  \lsection{Core Skills}
+  \begin{itemize}[leftmargin=0pt, label={}, itemsep=1pt]
+    \item {\small Python}
+    \item {\small Java}
+    \item {\small C / C++}
+    \item {\small JavaScript}
+    \item {\small SQL}
+    \item {\small Bash}
+  \end{itemize}
+
+  % ---- Technologies ---
+  \lsection{Technologies}
+  \begin{itemize}[leftmargin=0pt, label={}, itemsep=1pt]
+    \item {\small TensorFlow}
+    \item {\small PyTorch}
+    \item {\small React}
+    \item {\small Docker}
+    \item {\small Kubernetes}
+    \item {\small AWS}
+  \end{itemize}
+
+  % ---- Coursework ---
+  \lsection{Coursework}
+  \begin{itemize}[leftmargin=0pt, label={$\cdot$}, itemsep=1pt]
+    \item {\small Machine Learning}
+    \item {\small Algorithms}
+    \item {\small Operating Systems}
+    \item {\small Computer Networks}
+    \item {\small Distributed Systems}
+  \end{itemize}
+
+\end{minipage}%
+\hspace{\colSep}%
+\begin{minipage}[t]{\rightColW}
+
+  % ---- Experience ---
+  \rsection{Experience}
+
+  \rEntry{Research Scientist}{Facebook AI Research}{Jun 2016 – Present}{New York, NY}
+  \begin{itemize}[leftmargin=1.2em, itemsep=1pt, topsep=2pt]
+    \item % PLACEHOLDER: Quantified research impact.
+          Developed novel attention mechanism reducing BERT fine-tuning cost by 30\%.
+    \item Published 3 papers at top-tier venues (NeurIPS, ICML, ACL).
+    \item Open-sourced toolkit with 5k+ GitHub stars.
+  \end{itemize}
+  \vspace{6pt}
+
+  \rEntry{Software Engineering Intern}{Google}{May 2015 – Aug 2015}{Mountain View, CA}
+  \begin{itemize}[leftmargin=1.2em, itemsep=1pt, topsep=2pt]
+    \item % PLACEHOLDER: Quantified impact.
+          Shipped search ranking feature impacting 10M+ daily queries.
+    \item Wrote 8k lines of production C++ merged into Google's monorepo.
+  \end{itemize}
+  \vspace{6pt}
+
+  \rEntry{Research Intern}{Microsoft Research}{May 2014 – Aug 2014}{Redmond, WA}
+  \begin{itemize}[leftmargin=1.2em, itemsep=1pt, topsep=2pt]
+    \item % PLACEHOLDER: Quantified impact.
+          Prototyped NLP pipeline for document summarization (3x speedup over baseline).
+  \end{itemize}
+
+  % ---- Projects ---
+  \rsection{Projects}
+
+  \noindent\textbf{ScoreKeeper} \hfill {\small\color{muted}2023}\\
+  {\small Real-time sports score aggregator in Go. Handles 100k req/s using Redis pub/sub.}\\
+  \href{https://github.com/deedy/scorekeeper}{\small github.com/deedy/scorekeeper}
+  \vspace{6pt}
+
+  \noindent\textbf{AutoGrade} \hfill {\small\color{muted}2022}\\
+  {\small LLM-powered assignment grader for university courses. Deployed at 3 universities.}\\
+  \href{https://github.com/deedy/autograde}{\small github.com/deedy/autograde}
+
+  % ---- Publications ---
+  \rsection{Publications}
+  \begin{itemize}[leftmargin=1.2em, itemsep=3pt, topsep=2pt]
+    \item % PLACEHOLDER: Citation.
+          D. Das et al. ``Efficient Transformers via Sparse Attention.'' \textit{NeurIPS 2023.}
+    \item D. Das et al. ``Cross-Lingual Transfer with Minimal Fine-Tuning.'' \textit{ACL 2022.}
+  \end{itemize}
+
+\end{minipage}
+
+\end{document}
