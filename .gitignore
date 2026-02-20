@@ -18,7 +18,9 @@ __pycache__/
 *.pyc
 *.keras
 output/
+dist/
 node_modules/
+package-lock.json
 .DS_Store
 
 # Large local directories
